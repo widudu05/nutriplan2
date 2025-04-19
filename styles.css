@@ -1,13 +1,23 @@
 /* Estilos personalizados para o SaaS de Gestão Nutricional */
 
-/* Estilos gerais */
+/* Estilos da barra de navegação */
+nav.bg-teal-600 {
+    height: 64px;
+    padding: 0;
+}
+
 .nav-link, .mobile-nav-link {
     @apply inline-flex items-center border-b-2 border-transparent text-sm font-medium text-gray-200 hover:border-teal-300 hover:text-white;
     transition: all 0.3s ease;
+    padding: 1.2rem 0.75rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
 }
 
 .nav-link.active, .mobile-nav-link.active {
     @apply border-white text-white;
+    font-weight: 600;
 }
 
 .mobile-nav-link {
