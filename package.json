@@ -1,0 +1,24 @@
+{
+  "name": "nutriplan2",
+  "version": "1.0.0",
+  "description": "## Sobre o Projeto",
+  "main": "app.js",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 8080 -a 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/widudu05/nutriplan2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/widudu05/nutriplan2/issues"
+  },
+  "homepage": "https://github.com/widudu05/nutriplan2#readme"
+}
