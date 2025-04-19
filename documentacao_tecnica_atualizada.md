@@ -1,341 +1,253 @@
-# Documentação Técnica Atualizada - SaaS NutriPlan
+# Documentação Técnica Atualizada - NutriPlan SaaS
 
-## Sumário
+## Visão Geral
 
-1. [Introdução](#introdução)
-2. [Arquitetura do Sistema](#arquitetura-do-sistema)
-3. [Estrutura de Arquivos](#estrutura-de-arquivos)
-4. [Tecnologias Utilizadas](#tecnologias-utilizadas)
-5. [Componentes Principais](#componentes-principais)
-6. [Funcionalidades Implementadas](#funcionalidades-implementadas)
-7. [Guia de Instalação](#guia-de-instalação)
-8. [Guia de Desenvolvimento](#guia-de-desenvolvimento)
-9. [Melhorias Recentes](#melhorias-recentes)
-10. [Melhorias Futuras](#melhorias-futuras)
-11. [Referências](#referências)
+O NutriPlan é um Sistema de Gestão Nutricional (SaaS) desenvolvido para nutricionistas gerenciarem seus pacientes, planos alimentares, consultas e relatórios de forma eficiente e intuitiva. A aplicação foi projetada com foco na experiência do usuário, utilizando tecnologias modernas para garantir desempenho, escalabilidade e facilidade de uso.
 
-## Introdução
+## Arquitetura
 
-O SaaS NutriPlan é uma plataforma web desenvolvida para nutricionistas e profissionais da área de saúde, permitindo o gerenciamento completo de pacientes, criação de planos alimentares personalizados, cálculos nutricionais automáticos, e acompanhamento de resultados.
+O sistema segue uma arquitetura modular baseada em componentes, facilitando a manutenção e expansão. A estrutura atual é composta por:
 
-Este sistema foi desenvolvido com base na planilha Excel "Plano Alimentar", transformando suas funcionalidades em uma aplicação web moderna, acessível e escalável.
+### Frontend
+- HTML5 para estruturação
+- CSS3 com TailwindCSS para estilização
+- JavaScript vanilla para interatividade
+- Chart.js para visualizações gráficas
 
-### Objetivos do Sistema
-
-- Facilitar a gestão de pacientes e seus dados clínicos
-- Automatizar a criação de planos alimentares personalizados
-- Calcular automaticamente valores nutricionais com base em banco de dados de alimentos
-- Gerar relatórios e visualizações para acompanhamento de resultados
-- Permitir o gerenciamento de receitas e listas de compras
-- Oferecer uma interface intuitiva e responsiva para uso em diferentes dispositivos
-
-## Arquitetura do Sistema
-
-O SaaS NutriPlan foi implementado inicialmente como uma aplicação frontend estática, com planos para evolução para uma arquitetura completa de três camadas:
-
-### Camada de Apresentação (Frontend) - Implementada
-- **Tecnologias**: HTML5, CSS3, JavaScript
-- **Frameworks/Bibliotecas**: TailwindCSS, Chart.js
-- **Estrutura**: Arquitetura modular com separação de responsabilidades
-
-### Camada de Aplicação (Backend) - Planejada para Implementação Futura
-- **Tecnologias**: Node.js
-- **Framework**: Express.js
-- **API**: RESTful API para comunicação com o frontend
-
-### Camada de Dados - Planejada para Implementação Futura
-- **Banco de Dados**: PostgreSQL
-- **ORM**: Sequelize para mapeamento objeto-relacional
-
-### Diagrama de Arquitetura Atual
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                                                         │
-│                  Frontend Estático                      │
-│                                                         │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
-│  │             │    │             │    │             │  │
-│  │    HTML     │    │     CSS     │    │  JavaScript │  │
-│  │             │    │             │    │             │  │
-│  └─────────────┘    └─────────────┘    └─────────────┘  │
-│                                                         │
-│  ┌─────────────┐    ┌─────────────┐                     │
-│  │             │    │             │                     │
-│  │ TailwindCSS │    │   Chart.js  │                     │
-│  │             │    │             │                     │
-│  └─────────────┘    └─────────────┘                     │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
-```
-
-### Diagrama de Arquitetura Futura Planejada
-
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│                 │     │                 │     │                 │
-│    Frontend     │◄───►│     Backend     │◄───►│  Banco de Dados │
-│    (React.js)   │     │   (Node.js)     │     │  (PostgreSQL)   │
-│                 │     │                 │     │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-```
+### Backend (Planejado)
+- Node.js com Express para API RESTful
+- PostgreSQL para armazenamento de dados
+- Autenticação JWT para segurança
 
 ## Estrutura de Arquivos
 
-A estrutura de arquivos do projeto foi reorganizada para melhor modularidade e manutenção:
-
 ```
-/nutriplan2_melhorado/
+nutriplan2/
 ├── index.html              # Página principal da aplicação
-├── styles.css              # Estilos CSS personalizados
-├── app.js                  # Arquivo JavaScript principal (legado)
-├── js/                     # Diretório de scripts JavaScript modularizados
-│   ├── navigation.js       # Lógica de navegação entre seções
-│   ├── modules.js          # Módulos funcionais (pacientes, alimentos, etc.)
+├── styles.css              # Estilos globais
+├── js/                     # Scripts JavaScript modularizados
+│   ├── navigation.js       # Navegação entre seções
+│   ├── modules.js          # Módulos funcionais principais
 │   ├── charts.js           # Configuração e inicialização de gráficos
-│   ├── calendar.js         # Funcionalidade de agendamento com Google Calendar
-│   └── dashboard.js        # Interatividade do dashboard
-├── arquitetura_saas.md     # Documentação da arquitetura planejada
-├── documentacao_tecnica.md # Documentação técnica original
-├── documentacao_tecnica_atualizada.md # Documentação técnica atualizada
-├── estrutura_banco_dados.md # Estrutura do banco de dados planejado
-├── interface_usuario.md    # Documentação da interface do usuário
-├── melhorias_sugeridas.md  # Documentação de melhorias sugeridas
-├── ajustes_realizados.md   # Documentação dos ajustes implementados
-└── README.md               # Informações gerais do projeto
+│   ├── calendar.js         # Funcionalidade de calendário e agendamento
+│   ├── dashboard.js        # Interatividade do dashboard
+│   ├── agendamento.js      # Funcionalidade completa de agendamento
+│   ├── planos.js           # Funcionalidade de planos alimentares
+│   └── profile.js          # Ações do perfil de usuário
+├── arquitetura_saas.md     # Documentação da arquitetura
+├── documentacao_tecnica_saas.md  # Documentação técnica original
+└── estrutura_banco_dados.md      # Estrutura do banco de dados
 ```
 
-## Tecnologias Utilizadas
+## Módulos Principais
 
-### Frontend
-- **HTML5**: Estrutura da página
-- **CSS3**: Estilização
-- **JavaScript**: Lógica de interação e funcionalidades
-- **TailwindCSS**: Framework CSS para design responsivo
-- **Chart.js**: Biblioteca para criação de gráficos e visualizações
+### 1. Dashboard
 
-### Ambiente de Desenvolvimento
-- **Node.js**: Ambiente de execução JavaScript
-- **npm**: Gerenciador de pacotes
-- **http-server**: Servidor local para desenvolvimento
+O dashboard apresenta uma visão geral do sistema com estatísticas importantes e gráficos interativos:
 
-### Implantação
-- **Vercel/Netlify**: Plataformas de hospedagem estática (recomendadas)
+- **Cards Estatísticos**: Total de pacientes, planos ativos, consultas agendadas e média de perda de peso
+- **Gráficos**: Evolução de pacientes e distribuição por objetivo
+- **Listas**: Consultas recentes e tarefas pendentes
 
-## Componentes Principais
+Todos os elementos do dashboard são interativos e redirecionam para as seções correspondentes quando clicados.
 
-### 1. Sistema de Navegação
-O sistema de navegação foi implementado para permitir a transição entre diferentes seções da aplicação sem recarregar a página.
+### 2. Pacientes
 
-**Arquivo**: `js/navigation.js`
+Módulo para gerenciamento completo de pacientes:
 
-**Funcionalidades**:
-- Navegação entre seções (Dashboard, Pacientes, Planos, etc.)
-- Suporte a navegação responsiva (desktop e mobile)
-- Gerenciamento de estado ativo das seções
+- Cadastro e edição de informações
+- Visualização de histórico
+- Acompanhamento de progresso
+- Agendamento de consultas
 
-### 2. Módulos Funcionais
-Os módulos funcionais foram separados para melhor organização e manutenção do código.
+### 3. Planos Alimentares
 
-**Arquivo**: `js/modules.js`
+Módulo para criação e gerenciamento de planos alimentares personalizados:
 
-**Módulos Implementados**:
-- Módulo de Pacientes
-- Módulo de Banco de Alimentos
-- Módulo de Receitas
-- Módulo de Relatórios
+- Interface para criação de planos com múltiplas refeições
+- Filtros para busca de planos por paciente, tipo ou status
+- Visualização detalhada de cada plano
+- Edição e exclusão de planos
 
-### 3. Sistema de Visualização
-O sistema de visualização utiliza Chart.js para criar gráficos interativos.
+### 4. Banco de Alimentos
 
-**Arquivo**: `js/charts.js`
+Catálogo de alimentos com informações nutricionais:
 
-**Gráficos Implementados**:
-- Gráfico de evolução de pacientes
-- Gráfico de objetivos dos pacientes
-- Gráfico de distribuição de macronutrientes
+- Busca e filtragem de alimentos
+- Adição de novos alimentos
+- Categorização por grupos alimentares
 
-### 4. Sistema de Agendamento
-O sistema de agendamento permite integração com o Google Calendar para gerenciar consultas.
+### 5. Receitas
 
-**Arquivo**: `js/calendar.js`
+Biblioteca de receitas saudáveis:
 
-**Funcionalidades**:
-- Modal de agendamento de consultas
+- Cadastro de novas receitas
+- Cálculo automático de informações nutricionais
+- Associação com planos alimentares
+
+### 6. Relatórios
+
+Geração de relatórios e análises:
+
+- Progresso dos pacientes
+- Eficácia dos planos alimentares
+- Estatísticas de consultas
+
+### 7. Agendamento
+
+Sistema completo de agendamento de consultas:
+
+- Calendário interativo
 - Integração com Google Calendar
-- Notificações de agendamento bem-sucedido
-
-### 5. Dashboard Interativo
-O dashboard interativo permite navegação rápida para diferentes seções da aplicação.
-
-**Arquivo**: `js/dashboard.js`
-
-**Funcionalidades**:
-- Cards interativos que redirecionam para seções correspondentes
-- Gráficos clicáveis para análises detalhadas
-- Listas de consultas e tarefas interativas
+- Visualização de consultas agendadas
+- Notificações de lembretes
 
 ## Funcionalidades Implementadas
 
-### 1. Dashboard
-- Visão geral com métricas principais
-- Gráficos de evolução e distribuição
-- Cards de estatísticas rápidas
-- Interatividade com redirecionamento para seções correspondentes
+### Navegação
 
-### 2. Gestão de Pacientes
-- Listagem de pacientes
-- Busca e filtragem
-- Visualização de detalhes do paciente
-- Agendamento de consultas com integração ao Google Calendar
+- Barra de navegação superior com acesso a todos os módulos
+- Sistema de navegação entre seções sem recarregar a página
+- Indicação visual da seção atual
 
-### 3. Banco de Alimentos
-- Listagem de alimentos com informações nutricionais
-- Busca e filtragem por categoria
-- Visualização de detalhes nutricionais
+### Dashboard Interativo
 
-### 4. Receitas
-- Listagem de receitas
-- Visualização de informações nutricionais por porção
-- Categorização de receitas
+- Cards estatísticos clicáveis que redirecionam para seções específicas
+- Tooltips informativos ao passar o mouse sobre os elementos
+- Gráficos interativos com informações detalhadas
 
-### 5. Relatórios
-- Interface para geração de relatórios
-- Seleção de parâmetros e filtros
-- Opções de exportação
+### Sistema de Agendamento
 
-## Guia de Instalação
+- Calendário interativo para visualização e marcação de consultas
+- Modal para agendamento com campos para paciente, tipo, data e hora
+- Integração com Google Calendar para sincronização de eventos
+- Lista de consultas agendadas com opções de edição e cancelamento
 
-### Requisitos
-- Node.js (v14.x ou superior)
-- npm (v6.x ou superior)
+### Planos Alimentares
 
-### Instalação Local
+- Interface completa para criação e edição de planos
+- Sistema de filtros para busca de planos
+- Visualização detalhada de cada plano com todas as refeições
+- Ações para visualizar, editar e excluir planos
 
-1. Clone o repositório
-   ```bash
-   git clone https://github.com/widudu05/nutriplan2.git
-   cd nutriplan2_melhorado
-   ```
+### Perfil do Usuário
 
-2. Instale as dependências
-   ```bash
-   npm install
-   ```
+- Menu dropdown ao clicar na imagem do perfil
+- Acesso a informações do perfil, configurações e opção de logout
+- Modal detalhado com informações pessoais e estatísticas
+- Configurações de conta, notificações e preferências
 
-3. Inicie o servidor de desenvolvimento
-   ```bash
-   npm start
-   ```
+### Sistema de Notificações
 
-4. Acesse a aplicação em seu navegador
-   ```
-   http://localhost:8080
-   ```
-
-### Implantação em Produção
-
-#### Opção 1: Vercel/Netlify (Recomendado)
-1. Conecte seu repositório GitHub à plataforma Vercel ou Netlify
-2. Configure as opções de build (não necessárias para site estático)
-3. Deploy automático a partir do branch principal
-
-#### Opção 2: Servidor Web Tradicional
-1. Execute o build da aplicação (se necessário)
-2. Copie os arquivos para o diretório do servidor web
-3. Configure o servidor para servir os arquivos estáticos
-
-## Guia de Desenvolvimento
-
-### Estrutura de Desenvolvimento
-
-O projeto segue uma estrutura modular para facilitar o desenvolvimento e manutenção:
-
-1. **HTML (`index.html`)**: Contém a estrutura da página e os containers para os diferentes módulos
-2. **CSS (`styles.css`)**: Contém estilos personalizados além do TailwindCSS
-3. **JavaScript Modular**:
-   - `navigation.js`: Gerencia a navegação entre seções
-   - `modules.js`: Implementa os módulos funcionais
-   - `charts.js`: Configura e inicializa os gráficos
-   - `calendar.js`: Implementa a funcionalidade de agendamento
-   - `dashboard.js`: Implementa a interatividade do dashboard
-
-### Adicionando Novos Módulos
-
-Para adicionar um novo módulo funcional:
-
-1. Crie um container no `index.html`:
-   ```html
-   <div id="novo-modulo-content" class="page-content">
-     <div id="novo-modulo-container"></div>
-   </div>
-   ```
-
-2. Adicione um link de navegação:
-   ```html
-   <a href="#" class="nav-link" data-target="novo-modulo">Novo Módulo</a>
-   ```
-
-3. Implemente a função de carregamento no `modules.js`:
-   ```javascript
-   function loadNovoModulo() {
-     const novoModuloContainer = document.getElementById('novo-modulo-container');
-     if (!novoModuloContainer) return;
-     
-     // Implementação do módulo
-     const novoModuloHTML = `
-       <!-- HTML do novo módulo -->
-     `;
-     novoModuloContainer.innerHTML = novoModuloHTML;
-   }
-   ```
-
-4. Atualize o sistema de navegação em `navigation.js` para incluir o novo módulo
-
-### Boas Práticas
-
-1. **Modularidade**: Mantenha o código organizado em módulos com responsabilidades bem definidas
-2. **Comentários**: Documente o código adequadamente, especialmente em funções complexas
-3. **Consistência**: Siga os padrões de estilo e nomenclatura existentes
-4. **Responsividade**: Teste em diferentes tamanhos de tela ao desenvolver novas interfaces
-5. **Performance**: Otimize o carregamento e renderização, especialmente para gráficos e tabelas grandes
+- Ícone de notificações com contador
+- Menu dropdown com lista de notificações recentes
+- Categorização visual por tipo de notificação
 
 ## Melhorias Recentes
 
-### 1. Alinhamento da Barra de Navegação
-- Alinhamento dos itens da barra superior com o logo NutriSaaS
-- Melhoria na responsividade da barra de navegação
-- Ajustes visuais para melhor experiência do usuário
+### 1. Interface Visual
 
-### 2. Funcionalidade de Agendamento
-- Implementação de funcionalidade de agendamento de consultas
-- Integração com Google Calendar para gerenciamento de agenda
-- Modal interativo para preenchimento de informações da consulta
-- Notificações de confirmação de agendamento
+- Cor verde na barra de navegação para alinhamento com a identidade visual do NutriSaaS
+- Design responsivo para adaptação a diferentes dispositivos
+- Elementos interativos com feedback visual (hover, active states)
 
-### 3. Dashboard Interativo
-- Cards do dashboard agora são clicáveis e redirecionam para seções correspondentes
-- Gráficos interativos que levam para análises detalhadas
-- Listas de consultas recentes e tarefas pendentes com interatividade
-- Checkboxes funcionais para gerenciamento de tarefas
+### 2. Interatividade
 
-## Melhorias Futuras
+- Cards do dashboard com ações ao serem clicados
+- Tooltips informativos nos elementos principais
+- Modais interativos para ações complexas
 
-Consulte o arquivo `melhorias_sugeridas.md` para uma lista detalhada de melhorias potenciais, incluindo:
+### 3. Novas Funcionalidades
 
-1. Implementação do backend em Node.js/Express
+- Aba de Agendamento completa com calendário e integração Google Calendar
+- Conteúdo detalhado para a página de Planos Alimentares
+- Ações para o perfil do usuário com menus dropdown e modais
+
+### 4. Usabilidade
+
+- Navegação intuitiva entre as seções
+- Feedback visual para ações do usuário
+- Confirmações para ações críticas (exclusão, logout)
+
+## Tecnologias Utilizadas
+
+- **HTML5**: Estruturação semântica do conteúdo
+- **CSS3/TailwindCSS**: Framework de utilidades CSS para estilização rápida e consistente
+- **JavaScript**: Linguagem de programação para interatividade do lado do cliente
+- **Chart.js**: Biblioteca para criação de gráficos interativos
+- **Google Calendar API**: Integração para sincronização de eventos
+
+## Integração com Serviços Externos
+
+- **Google Calendar**: Sincronização de consultas agendadas
+- **Serviços de E-mail** (planejado): Envio de lembretes e notificações
+
+## Requisitos do Sistema
+
+### Cliente
+- Navegador moderno com suporte a ES6+ (Chrome, Firefox, Safari, Edge)
+- Conexão com internet
+
+### Servidor (Planejado)
+- Node.js 14+
+- PostgreSQL 12+
+- 2GB RAM mínimo
+- 10GB de espaço em disco
+
+## Plano de Implementação Backend
+
+O backend será implementado em fases:
+
+1. **Fase 1**: Autenticação e gerenciamento de usuários
+2. **Fase 2**: API para pacientes e consultas
+3. **Fase 3**: API para planos alimentares e banco de alimentos
+4. **Fase 4**: Sistema de relatórios e análises
+5. **Fase 5**: Integrações com serviços externos
+
+## Considerações de Segurança
+
+- Autenticação JWT para proteção de rotas
+- Validação de dados em frontend e backend
+- Sanitização de inputs para prevenção de XSS
+- HTTPS para comunicação segura
+- Proteção contra CSRF
+
+## Próximos Passos
+
+1. Implementação do backend com Node.js e Express
 2. Integração com banco de dados PostgreSQL
-3. Migração para arquitetura de componentes React
-4. Melhorias de interface e experiência do usuário
-5. Implementação de funcionalidades avançadas
-6. Melhorias técnicas e de segurança
+3. Sistema de autenticação e autorização
+4. Migração para arquitetura de componentes React
+5. Implementação de testes automatizados
+6. Otimização de performance
 
-## Referências
+---
 
-1. [Documentação do TailwindCSS](https://tailwindcss.com/docs)
-2. [Documentação do Chart.js](https://www.chartjs.org/docs/latest/)
-3. [Documentação da API do Google Calendar](https://developers.google.com/calendar)
-4. [Tabela TACO - Tabela Brasileira de Composição de Alimentos](https://www.cfn.org.br/wp-content/uploads/2017/03/taco_4_edicao_ampliada_e_revisada.pdf)
-5. [Documentação do Node.js](https://nodejs.org/en/docs/)
-6. [Documentação do Express.js](https://expressjs.com/)
-7. [Documentação do PostgreSQL](https://www.postgresql.org/docs/)
+## Apêndice: Guia de Desenvolvimento
+
+### Adicionando Novos Módulos
+
+Para adicionar um novo módulo:
+
+1. Criar arquivo JavaScript na pasta `js/`
+2. Adicionar referência no `index.html`
+3. Implementar função de inicialização no evento `DOMContentLoaded`
+4. Adicionar link na barra de navegação
+
+### Convenções de Código
+
+- Nomes de funções em camelCase
+- Nomes de constantes em UPPER_CASE
+- Comentários para funções complexas
+- Modularização de código por funcionalidade
+
+### Processo de Build (Planejado)
+
+- Webpack para bundling
+- Babel para transpilação
+- PostCSS para processamento de CSS
+- Minificação para produção
+
+---
+
+Documentação atualizada em: 19 de Abril de 2025
