@@ -1,0 +1,277 @@
+<!-- Modais para a página de Receitas -->
+
+<!-- Modal Nova Receita -->
+<div id="nova-receita-modal" class="fixed z-10 inset-0 overflow-y-auto" style="display: none;">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+              Cadastrar Nova Receita
+            </h3>
+            <div class="mt-2">
+              <p class="text-sm text-gray-500">
+                Preencha os dados abaixo para cadastrar uma nova receita.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-5">
+          <form id="nova-receita-form">
+            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div class="sm:col-span-6">
+                <label for="receita-titulo" class="block text-sm font-medium text-gray-700">Título da Receita</label>
+                <div class="mt-1">
+                  <input type="text" name="receita-titulo" id="receita-titulo" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+              </div>
+
+              <div class="sm:col-span-6">
+                <label for="receita-categoria" class="block text-sm font-medium text-gray-700">Categoria</label>
+                <div class="mt-1">
+                  <select id="receita-categoria" name="receita-categoria" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                    <option value="Café da Manhã">Café da Manhã</option>
+                    <option value="Almoço">Almoço</option>
+                    <option value="Jantar">Jantar</option>
+                    <option value="Lanches">Lanches</option>
+                    <option value="Sobremesas">Sobremesas</option>
+                    <option value="Saladas">Saladas</option>
+                    <option value="Sopas">Sopas</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label for="receita-tempo" class="block text-sm font-medium text-gray-700">Tempo de Preparo (minutos)</label>
+                <div class="mt-1">
+                  <input type="number" name="receita-tempo" id="receita-tempo" min="1" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label for="receita-porcoes" class="block text-sm font-medium text-gray-700">Porções</label>
+                <div class="mt-1">
+                  <input type="number" name="receita-porcoes" id="receita-porcoes" min="1" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="receita-calorias" class="block text-sm font-medium text-gray-700">Calorias</label>
+                <div class="mt-1">
+                  <input type="number" name="receita-calorias" id="receita-calorias" min="0" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="receita-proteinas" class="block text-sm font-medium text-gray-700">Proteínas (g)</label>
+                <div class="mt-1">
+                  <input type="number" name="receita-proteinas" id="receita-proteinas" min="0" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="receita-carboidratos" class="block text-sm font-medium text-gray-700">Carboidratos (g)</label>
+                <div class="mt-1">
+                  <input type="number" name="receita-carboidratos" id="receita-carboidratos" min="0" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+              </div>
+
+              <div class="sm:col-span-6">
+                <label for="receita-ingredientes" class="block text-sm font-medium text-gray-700">Ingredientes (um por linha)</label>
+                <div class="mt-1">
+                  <textarea id="receita-ingredientes" name="receita-ingredientes" rows="5" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required></textarea>
+                </div>
+              </div>
+
+              <div class="sm:col-span-6">
+                <label for="receita-preparo" class="block text-sm font-medium text-gray-700">Modo de Preparo (um passo por linha)</label>
+                <div class="mt-1">
+                  <textarea id="receita-preparo" name="receita-preparo" rows="5" class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" required></textarea>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="submit" form="nova-receita-form" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+          Cadastrar
+        </button>
+        <button type="button" class="close-modal mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Ver Receita -->
+<div id="ver-receita-modal" class="fixed z-10 inset-0 overflow-y-auto" style="display: none;">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="detalhe-titulo">
+              Salada de Frango com Abacate
+            </h3>
+            <div class="mt-2">
+              <span id="detalhe-categoria" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                Saladas
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-5">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-500">Tempo</h4>
+                <p id="detalhe-tempo" class="mt-1 text-sm text-gray-900">20 minutos</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-500">Porções</h4>
+                <p id="detalhe-porcoes" class="mt-1 text-sm text-gray-900">2 porções</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-500">Favorito</h4>
+                <p class="mt-1">
+                  <svg class="h-5 w-5 text-yellow-400 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                </p>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4 mb-6 border-t border-b border-gray-200 py-4">
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-500">Calorias</h4>
+                <p id="detalhe-calorias" class="mt-1 text-sm text-gray-900">320</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-500">Proteínas</h4>
+                <p id="detalhe-proteinas" class="mt-1 text-sm text-gray-900">28g</p>
+              </div>
+              <div class="text-center">
+                <h4 class="text-sm font-medium text-gray-500">Carboidratos</h4>
+                <p id="detalhe-carboidratos" class="mt-1 text-sm text-gray-900">12g</p>
+              </div>
+            </div>
+            
+            <div class="mb-4">
+              <h4 class="text-sm font-medium text-gray-500 mb-2">Ingredientes</h4>
+              <ul id="detalhe-ingredientes" class="list-disc list-inside text-sm text-gray-900">
+                <li>200g de peito de frango grelhado</li>
+                <li>1 abacate maduro</li>
+                <li>1 tomate</li>
+                <li>Folhas de alface</li>
+                <li>Azeite de oliva</li>
+                <li>Sal e pimenta a gosto</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 class="text-sm font-medium text-gray-500 mb-2">Modo de Preparo</h4>
+              <ol id="detalhe-preparo" class="list-decimal list-inside text-sm text-gray-900">
+                <li>Corte o frango em cubos</li>
+                <li>Pique o abacate e o tomate</li>
+                <li>Misture todos os ingredientes</li>
+                <li>Tempere com azeite, sal e pimenta</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="button" class="close-modal w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Receita -->
+<div id="editar-receita-modal" class="fixed z-10 inset-0 overflow-y-auto" style="display: none;">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-6 w-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+              Editar Receita
+            </h3>
+            <div class="mt-2">
+              <p class="text-sm text-gray-500">
+                Atualize os dados da receita conforme necessário.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-5">
+          <form id="editar-receita-form">
+            <input type="hidden" name="receita-id" id="receita-id">
+            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div class="sm:col-span-6">
+                <label for="receita-titulo" class="block text-sm font-medium text-gray-700">Título da Receita</label>
+                <div class="mt-1">
+                  <input type="text" name="receita-titulo" id="receita-titulo-edit" class="shadow-sm focus:ring-yellow-500 focus:border-yellow-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                </div>
+              </div>
+
+              <div class="sm:col-span-6">
+                <label for="receita-categoria" class="block text-sm font-medium text-gray-700">Categoria</label>
+                <div class="mt-1">
+                  <select id="receita-categoria-edit" name="receita-categoria" class="shadow-sm focus:ring-yellow-500 focus:border-yellow-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                    <option value="Café da Manhã">Café da Manhã</option>
+                    <option value="Almoço">Almoço</option>
+                    <option value="Jantar">Jantar</option>
+                    <option value="Lanches">Lanches</option>
+                    <option value="Sobremesas">Sobremesas</option>
+                    <option value="Saladas">Saladas</option>
+                    <option value="Sopas">Sopas</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sm:col-span-
+(Content truncated due to size limit. Use line ranges to read in chunks)

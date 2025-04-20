@@ -1,0 +1,278 @@
+<!-- Modal para adicionar alimento personalizado -->
+<div id="modal-adicionar-alimento" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+  <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+    <div class="flex justify-between items-center border-b pb-3">
+      <h3 class="text-xl font-semibold text-gray-700">Adicionar Alimento Personalizado</h3>
+      <button id="fechar-modal-adicionar-alimento" class="text-gray-400 hover:text-gray-500">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <form id="form-adicionar-alimento" class="mt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="col-span-1 md:col-span-2">
+          <label for="nome_alimento" class="block text-sm font-medium text-gray-700">Nome do Alimento</label>
+          <input type="text" id="nome_alimento" name="nome_alimento" required
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="categoria" class="block text-sm font-medium text-gray-700">Categoria</label>
+          <select id="categoria" name="categoria" required
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+            <option value="">Selecione uma categoria</option>
+            <!-- Categorias serão preenchidas via JavaScript -->
+          </select>
+        </div>
+        
+        <div>
+          <label for="energia_kcal" class="block text-sm font-medium text-gray-700">Energia (kcal)</label>
+          <input type="number" id="energia_kcal" name="energia_kcal" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="proteina_g" class="block text-sm font-medium text-gray-700">Proteína (g)</label>
+          <input type="number" id="proteina_g" name="proteina_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="lipideos_g" class="block text-sm font-medium text-gray-700">Lipídeos (g)</label>
+          <input type="number" id="lipideos_g" name="lipideos_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="carboidrato_g" class="block text-sm font-medium text-gray-700">Carboidratos (g)</label>
+          <input type="number" id="carboidrato_g" name="carboidrato_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="fibra_g" class="block text-sm font-medium text-gray-700">Fibra (g)</label>
+          <input type="number" id="fibra_g" name="fibra_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="calcio_mg" class="block text-sm font-medium text-gray-700">Cálcio (mg)</label>
+          <input type="number" id="calcio_mg" name="calcio_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="ferro_mg" class="block text-sm font-medium text-gray-700">Ferro (mg)</label>
+          <input type="number" id="ferro_mg" name="ferro_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="sodio_mg" class="block text-sm font-medium text-gray-700">Sódio (mg)</label>
+          <input type="number" id="sodio_mg" name="sodio_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="vitamina_c_mg" class="block text-sm font-medium text-gray-700">Vitamina C (mg)</label>
+          <input type="number" id="vitamina_c_mg" name="vitamina_c_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+      </div>
+      
+      <div class="mt-6 flex justify-end">
+        <button type="button" id="cancelar-adicionar-alimento"
+                class="mr-3 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+          Cancelar
+        </button>
+        <button type="submit"
+                class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          Adicionar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal para editar alimento personalizado -->
+<div id="modal-editar-alimento" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+  <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+    <div class="flex justify-between items-center border-b pb-3">
+      <h3 class="text-xl font-semibold text-gray-700">Editar Alimento Personalizado</h3>
+      <button id="fechar-modal-editar-alimento" class="text-gray-400 hover:text-gray-500">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <form id="form-editar-alimento" class="mt-4">
+      <input type="hidden" id="editar_id" name="id">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="col-span-1 md:col-span-2">
+          <label for="editar_nome_alimento" class="block text-sm font-medium text-gray-700">Nome do Alimento</label>
+          <input type="text" id="editar_nome_alimento" name="nome_alimento" required
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_categoria" class="block text-sm font-medium text-gray-700">Categoria</label>
+          <select id="editar_categoria" name="categoria" required
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+            <option value="">Selecione uma categoria</option>
+            <!-- Categorias serão preenchidas via JavaScript -->
+          </select>
+        </div>
+        
+        <div>
+          <label for="editar_energia_kcal" class="block text-sm font-medium text-gray-700">Energia (kcal)</label>
+          <input type="number" id="editar_energia_kcal" name="energia_kcal" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_proteina_g" class="block text-sm font-medium text-gray-700">Proteína (g)</label>
+          <input type="number" id="editar_proteina_g" name="proteina_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_lipideos_g" class="block text-sm font-medium text-gray-700">Lipídeos (g)</label>
+          <input type="number" id="editar_lipideos_g" name="lipideos_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_carboidrato_g" class="block text-sm font-medium text-gray-700">Carboidratos (g)</label>
+          <input type="number" id="editar_carboidrato_g" name="carboidrato_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_fibra_g" class="block text-sm font-medium text-gray-700">Fibra (g)</label>
+          <input type="number" id="editar_fibra_g" name="fibra_g" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_calcio_mg" class="block text-sm font-medium text-gray-700">Cálcio (mg)</label>
+          <input type="number" id="editar_calcio_mg" name="calcio_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_ferro_mg" class="block text-sm font-medium text-gray-700">Ferro (mg)</label>
+          <input type="number" id="editar_ferro_mg" name="ferro_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_sodio_mg" class="block text-sm font-medium text-gray-700">Sódio (mg)</label>
+          <input type="number" id="editar_sodio_mg" name="sodio_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+        
+        <div>
+          <label for="editar_vitamina_c_mg" class="block text-sm font-medium text-gray-700">Vitamina C (mg)</label>
+          <input type="number" id="editar_vitamina_c_mg" name="vitamina_c_mg" min="0" step="0.1"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+        </div>
+      </div>
+      
+      <div class="mt-6 flex justify-end">
+        <button type="button" id="cancelar-editar-alimento"
+                class="mr-3 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+          Cancelar
+        </button>
+        <button type="submit"
+                class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          Salvar Alterações
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal para confirmar exclusão de alimento personalizado -->
+<div id="modal-confirmar-exclusao" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+  <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-2/3 lg:w-1/3 shadow-lg rounded-md bg-white">
+    <div class="mt-3 text-center">
+      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+        <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+      </div>
+      <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">Confirmar Exclusão</h3>
+      <div class="mt-2 px-7 py-3">
+        <p class="text-sm text-gray-500">
+          Tem certeza que deseja excluir este alimento personalizado? Esta ação não pode ser desfeita.
+        </p>
+      </div>
+      <input type="hidden" id="excluir_id">
+      <div class="flex justify-center mt-4 px-4 py-3">
+        <button id="cancelar-exclusao" 
+                class="mr-3 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+          Cancelar
+        </button>
+        <button id="confirmar-exclusao"
+                class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+          Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para visualizar detalhes do alimento -->
+<div id="modal-visualizar-alimento" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+  <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+    <div class="flex justify-between items-center border-b pb-3">
+      <h3 class="text-xl font-semibold text-gray-700">Detalhes do Alimento</h3>
+      <button id="fechar-modal-visualizar-alimento" class="text-gray-400 hover:text-gray-500">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="mt-4">
+      <h4 id="visualizar_nome_alimento" class="text-lg font-medium text-gray-900"></h4>
+      <p id="visualizar_categoria" class="text-sm text-gray-500 mb-4"></p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div class="bg-gray-50 p-3 rounded-md">
+          <p class="text-sm font-medium text-gray-500">Energia</p>
+          <p id="visualizar_energia_kcal" class="text-lg font-semibold"></p>
+        </div>
+        
+        <div class="bg-gray-50 p-3 rounded-md">
+          <p class="text-sm font-medium text-gray-500">Proteína</p>
+          <p id="visualizar_proteina_g" class="text-lg font-semibold"></p>
+        </div>
+        
+        <div class="bg-gray-50 p-3 rounded-md">
+          <p class="text-sm font-medium text-gray-500">Lipídeos</p>
+          <p id="visualizar_lipideos_g" class="text-lg font-semibold"></p>
+        </div>
+        
+        <div class="bg-gray-50 p-3 rounded-md">
+          <p class="text-sm font-medium text-gray-500">Carboidratos</p>
+          <p id="visualizar_carboidrato_g" class="text-lg font-semibold"></p>
+        </div>
+        
+        <div class="bg-gray-50 p-3 rounded-md">
+          <p class="text-sm font-medium text-gray-500">Fibra</p>
+          <p id="visualizar_fibra_g" class="text-lg font-semibold"></p>
+        </div>
+        
+        <div class="bg-gray-50 p-3 rounded-md">
+          <p class="text-sm font-medium text-gray-500">Cálcio</p>
+          <p id="visualizar_calcio_mg" class="text-lg font-semibold"></p>
+        </div>
+        
+        <div class="bg-gray-50 p-3 rounded-md">
+          <
+(Content truncated due to size limit. Use line ranges to read in chunks)
